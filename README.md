@@ -5,10 +5,10 @@ This repository contains the system instructions, configuration, and setup guide
 ## Workflow Overview
 
 The system automates the following cycle:
-1. **Send Reminders**: Reads the "SCIT Invoice" Google Sheet, identifies rows with a `Pending` status, and sends a customized Gmail reminder from `sadicsha.khandait@associate.scit.edu`.
+1. **Send Reminders**: Reads the "SCIT Invoice" Google Sheet, identifies rows with a `Pending` status, and sends a customized Gmail reminder from `sender@yourdomain.com`.
 2. **Reply Routing**:
-   * Maintenance-related invoice reminders direct replies to `sadicshaa@gmail.com`.
-   * Project-related invoice reminders direct replies to `sadicsha00@gmail.com`.
+   * Maintenance-related invoice reminders direct replies to `maintenance-replies@yourdomain.com`.
+   * Project-related invoice reminders direct replies to `project-replies@yourdomain.com`.
 3. **Automatic Reconciliation**: Monitors incoming confirmation emails, extracts the Transaction ID, matches the sender's email address in the sheet, and updates the row status to `Completed` with the transaction ID.
 
 ---
@@ -19,7 +19,7 @@ The Google Sheet named **"SCIT Invoice"** should have the following headers:
 
 | Sr | Invoice ID | Type | Name | Amount | Account No | Bank Name | Status | Transaction_id | Email |
 |----|------------|------|------|--------|------------|-----------|--------|----------------|-------|
-| 1  | 1001       | Maintenance | Madhav | 50000 | 456789 | Axis | Completed | 1235567 | sadicshaa@gmail.com |
+| 1  | 1001       | Maintenance | Madhav | 50000 | 456789 | Axis | Completed | 1235567 | maintenance-replies@yourdomain.com |
 
 ---
 
@@ -51,7 +51,7 @@ Steps:
 
       Subject: Payment Pending – Action Required
       To: [Email]
-      Reply-To: [Use sadicshaa@gmail.com if Type is "Maintenance", Use sadicsha00@gmail.com if Type is "Project"]
+      Reply-To: [Use maintenance-replies@yourdomain.com if Type is "Maintenance", Use project-replies@yourdomain.com if Type is "Project"]
 
       Dear [Name],
 
@@ -72,7 +72,7 @@ Steps:
 ---
 
 ### Workflow 2: Process Confirmation Replies
-Trigger: When a new email reply is received in either "sadicshaa@gmail.com" or "sadicsha00@gmail.com".
+Trigger: When a new email reply is received in either "maintenance-replies@yourdomain.com" or "project-replies@yourdomain.com".
 Steps:
 1. Extract the Sender's Email Address from the incoming email.
 2. Extract the "Transaction ID" or "Reference Number" from the email body.
