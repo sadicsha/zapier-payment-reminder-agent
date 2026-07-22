@@ -1,4 +1,4 @@
-# SCIT Payment Reminder & Reconciliation Agent (Zapier Central)
+# Payment Reminder & Reconciliation Agent (Zapier Central)
 
 This repository contains the system instructions, configuration, and setup guide for the automated payment reminder and reconciliation agent built using Zapier Central.
 
