@@ -1,11 +1,11 @@
-# Payment Reminder & Reconciliation Agent (Zapier Central)
+# Acme Payment Reminder & Reconciliation Agent (Zapier Central)
 
 This repository contains the system instructions, configuration, and setup guide for the automated payment reminder and reconciliation agent built using Zapier Central.
 
 ## Workflow Overview
 
 The system automates the following cycle:
-1. **Send Reminders**: Reads the "SCIT Invoice" Google Sheet, identifies rows with a `Pending` status, and sends a customized Gmail reminder from `sender@yourdomain.com`.
+1. **Send Reminders**: Reads the "Acme Invoice" Google Sheet, identifies rows with a `Pending` status, and sends a customized Gmail reminder from `sender@yourdomain.com`.
 2. **Reply Routing**:
    * Maintenance-related invoice reminders direct replies to `maintenance-replies@yourdomain.com`.
    * Project-related invoice reminders direct replies to `project-replies@yourdomain.com`.
@@ -15,7 +15,7 @@ The system automates the following cycle:
 
 ## Google Sheet Layout Requirements
 
-The Google Sheet named **"SCIT Invoice"** should have the following headers:
+The Google Sheet named **"Acme Invoice"** should have the following headers:
 
 | Sr | Invoice ID | Type | Name | Amount | Account No | Bank Name | Status | Transaction_id | Email |
 |----|------------|------|------|--------|------------|-----------|--------|----------------|-------|
@@ -28,9 +28,9 @@ The Google Sheet named **"SCIT Invoice"** should have the following headers:
 Copy and paste the instructions below into the **Instructions to follow** box in Zapier Central:
 
 ```text
-You are an Automated Payment Reminder and Reconciliation Agent for SCIT. 
+You are an Automated Payment Reminder and Reconciliation Agent for Acme Corp. 
 
-Your objective is to read pending payment records from the SCIT Invoice Google Sheet, send appropriate reminder emails, and update the sheet when recipients reply with payment confirmations.
+Your objective is to read pending payment records from the Acme Invoice Google Sheet, send appropriate reminder emails, and update the sheet when recipients reply with payment confirmations.
 
 ### General Rules:
 - Never edit or update a row that is already marked as "Completed".
@@ -42,7 +42,7 @@ Your objective is to read pending payment records from the SCIT Invoice Google S
 ### Workflow 1: Send Pending Payment Reminders
 Trigger: Manual run or Daily schedule.
 Steps:
-1. Read all rows from the Google Sheet named "SCIT Invoice".
+1. Read all rows from the Google Sheet named "Acme Invoice".
 2. Identify rows where the "Status" is "Pending" (case-insensitive).
 3. For each identified row:
    a. Check the "Type" column.
@@ -66,8 +66,8 @@ Steps:
       Thank you for your cooperation.
 
       Best Regards,
-      Sadicsha Khandait
-      SCIT
+      John Doe
+      Acme Corp
 
 ---
 
@@ -76,7 +76,7 @@ Trigger: When a new email reply is received in either "maintenance-replies@yourd
 Steps:
 1. Extract the Sender's Email Address from the incoming email.
 2. Extract the "Transaction ID" or "Reference Number" from the email body.
-3. Search the "SCIT Invoice" Google Sheet for a row where:
+3. Search the "Acme Invoice" Google Sheet for a row where:
    - The "Email" column matches the Sender's Email Address.
    - The "Status" is "Pending".
 4. If a matching row is found:
@@ -95,7 +95,7 @@ Steps:
 1. **Google Sheets**:
    * Action: `Update Spreadsheet Row(s)`
    * Configuration:
-     * **Spreadsheet**: Set a specific value -> `SCIT Invoice`
+     * **Spreadsheet**: Set a specific value -> `Acme Invoice`
      * **Worksheet**: Set a specific value -> `Sheet1` (or your active worksheet name)
      * **Row**: Let your agent select a value for this field (dynamically supplied by AI)
 2. **Gmail**:
